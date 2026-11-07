@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f5;
+    background-image: radial-gradient(#d3dbdf 15%, transparent 16%);
+    background-size: 20px 20px;
+    padding: 40px 20px;
+    color: #333;
+}
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+/* Top input bar styling */
+.input-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.input-form input[type="text"] {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: #fff;
+}
+.input-form button {
+    padding: 0 25px;
+    font-size: 16px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.input-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive sticker board grid */
+.sticker-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* Note sticker styling */
+.sticker {
+    aspect-ratio: 1 / 1; /* Forces strict square dimensions */
+    background-color: #fff799; /* Classic post-it yellow */
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.sticker-content{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    max-height: 75%;
+    overflow-y:auto;
+}
+.icon-btn{
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin-top: 1px; /* Выравнивание по базовой линии первой строки текста */
+    border-radius: 50%;
+    border: 1px solid #bdc3c7;
+    background: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #7f8c8d;
+    transition: all 0.2s ease;
+}
+a.icon-btn{
+    text-decoration: none;
+}
+
+.icon-btn:hover {
+    background-color: #2ecc71;
+    color: #2ecc71;
+}
+.sticker-text {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #333;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+
+/* Subtle natural tilt variations using nth-child */
+.sticker:nth-child(even) { transform: rotate(2deg); }
+.sticker:nth-child(odd) { transform: rotate(-2deg); }
+.sticker:nth-child(3n) { transform: rotate(1.5deg); }
+
+.sticker:hover {
+    transform: scale(1.05) rotate(0deg);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+/* Interactive task text */
+
+
+/* Completed state styling */
+.sticker.completed-task {
+    background-color: #e0e6ed;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+.sticker.completed-task .icon-btn {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: #ffffff;
+}
+
+/* Action footer inside the square */
+.sticker-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.status-badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #b2bec3;
+}
+.sticker.completed-task .status-badge {
+    color: #2ecc71;
+}
+.delete-btn {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: color 0.2s;
+    margin-left: auto;
+}
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+}

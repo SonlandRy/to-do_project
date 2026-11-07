@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+
+    <title>Sticker To-Do Board</title>
+
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Task Board</h1>
+            <form class="input-form" action="/add" method="POST">
+                <input type="text" name="task" placeholder="Write a note..." required autocomplete="off">
+                <button type="submit">Pin It</button>
+            </form>
+        </header>
+
+        <main class="sticker-board">
+            {% for todo in todos %}
+            <div class="sticker {% if todo.done %}completed-task{% endif %}">
+                <div class="sticker-content">
+                    <a href="/toggle/{{ todo.id }}" type="button" class="icon-btn" aria-label="Toggle status">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </a>
+                    <div class="sticker-text">
+                        <span> {{ todo.task }}</span>
+                    </div>
+
+                </div>
+
+                <div class="sticker-footer">
+                    <span class="status-badge">
+                        {% if todo.done %}Done{% else %}Active{% endif %}
+                    </span>
+                    <a href="/delete/{{ todo.id }}" class="delete-btn" title="Delete note">✕</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>No note stickers pinned. Add a task above to populate your board!</p>
+            </div>
+            {% endfor %}
+        </main>
+    </div>
+
+</body>
+</html>
